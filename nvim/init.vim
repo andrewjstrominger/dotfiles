@@ -176,8 +176,90 @@ let $FZF_DEFAULT_COMMAND = '(git ls-tree -r --name-only HEAD || find . -path "*/
 " disable git gutter by default
 let g:gitgutter_enabled = 0
 
-" ###### PERSONAL CONFIG ######
+" space is leader
+:map <space> \
 
-if filereadable(expand("~/.my_nvimrc"))
-  source $HOME/.my_nvimrc
-endif
+" make nerdtree wider
+:let g:NERDTreeWinSize=60
+
+" prevent line wrapping
+set nowrap
+
+" jj and jk exit insert mode
+inoremap jj <esc>
+inoremap jk <esc>
+
+" tab switches buffers
+function SwitchBuffer()
+  b#
+endfunction
+" nmap <Tab> :call SwitchBuffer()<CR>
+
+" autocomplete
+let g:mucomplete#enable_auto_at_startup = 1
+set completeopt+=menuone
+set completeopt+=noselect
+"set completeopt+=noinsert
+
+" up down left right arrows buffer navigation
+noremap <up> <C-w><up>
+noremap <down> <C-w><down>
+noremap <left> <C-w><left>
+noremap <right> <C-w><right>
+
+" git gutter
+let g:gitgutter_enabled = 1
+
+" remap vim multiple cursors
+" let g:multi_cursor_use_default_mapping=0
+
+" Default mapping
+"let g:multi_cursor_start_word_key      = '<C-m>'
+"let g:multi_cursor_select_all_word_key = '<C-m>'
+"let g:multi_cursor_start_key           = 'g<C-n>'
+"let g:multi_cursor_select_all_key      = 'g<C-m>'
+"let g:multi_cursor_next_key            = '<C-n>'
+"let g:multi_cursor_prev_key            = '<C-p>'
+"let g:multi_cursor_skip_key            = '<C-x>'
+"let g:multi_cursor_quit_key            = '<Esc>'
+
+nnoremap <leader>ls :OpenSpecInSplit<cr>
+
+fun! OpenFilesInSplit(left, right)
+  if a:left == a:right
+    return
+  endif
+
+  only
+  exec "edit " . a:left
+  exec "vs " . a:right
+  execute "normal! \<c-w>t"
+endfun
+
+fun! OpenSpecInSplit()
+  let file = expand('%:p')
+
+  if match(file, "app/") >= 0
+    let f1 = substitute(file, "\\.rb", "_spec.rb", "")
+    let f2 = substitute(f1, "app\\/", "spec/", "")
+    call OpenFilesInSplit(f2, file)
+    exec "w"
+  elseif match(file, "spec/") >= 0
+    let f1 = substitute(file, "\_spec", "", "")
+    let f2 = substitute(f1, "spec/", "app/", "")
+    call OpenFilesInSplit(file, f2)
+    exec "w"
+  elseif match(file, "src") >= 0
+    let f1 = substitute(file, "\\.js", "-test.js", "")
+    let f2 = substitute(f1, "src\\/", "test/", "")
+    call OpenFilesInSplit(f2, file)
+    exec "w"
+  elseif match(file, "test") >= 0
+    let f1 = substitute(file, "\\-test.js", ".js", "")
+    let f2 = substitute(f1, "test\\/", "src/", "")
+    call OpenFilesInSplit(file, f2)
+    exec "w"
+  endif
+endfun
+com! OpenSpecInSplit :call OpenSpecInSplit()
+:tnoremap <Esc> <C-\><C-n>
