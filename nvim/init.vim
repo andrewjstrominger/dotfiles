@@ -249,6 +249,11 @@ fun! OpenSpecInSplit()
     let f2 = substitute(f1, "spec/", "app/", "")
     call OpenFilesInSplit(file, f2)
     exec "w"
+  elseif match(file, "test/") >= 0
+    let f1 = substitute(file, "\_test", "", "")
+    let f2 = substitute(f1, "test/", "app/", "")
+    call OpenFilesInSplit(file, f2)
+    exec "w"
   elseif match(file, "src") >= 0
     let f1 = substitute(file, "\\.js", "-test.js", "")
     let f2 = substitute(f1, "src\\/", "test/", "")
