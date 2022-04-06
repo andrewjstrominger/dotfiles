@@ -13,6 +13,8 @@ then
 	mkdir $HOME/.config/nvim
 	cp -r nvim/* $HOME/.config/nvim/.
 	#nvim +'PlugInstall --sync' +qa
+	vim +PluginInstall +qall
+
 
 	git config --global alias.co checkout
 	git config --global alias.br branch
