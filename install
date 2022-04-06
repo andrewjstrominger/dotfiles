@@ -5,4 +5,4 @@
 #curl -L -o $HOME/bin/nvim https://github.com/neovim/neovim/releases/download/v0.6.1/nvim.appimage
 #chmod a+x $HOME/bin/nvim
 
-apt-get install -y neovim
+sudo apt-get install -y neovim
