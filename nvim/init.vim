@@ -25,9 +25,11 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'w0rp/ale', {'commit': 'e4faf82'}
   Plug 'mxw/vim-jsx', {'commit': 'ffc0bfd'}
   Plug 'airblade/vim-gitgutter', { 'commit': 'c2651ae' }
-  if !empty(glob("$HOME/.my_nvim_plugins"))
-    source $HOME/.my_nvim_plugins
-  endif
+  Plug 'https://github.com/scrooloose/nerdcommenter'
+  Plug 'https://github.com/tpope/vim-surround.git'
+  Plug 'tpope/vim-eunuch'
+  Plug 'airblade/vim-gitgutter'
+  Plug 'lifepillar/vim-mucomplete'
 call plug#end()
 
 set dir=/tmp//

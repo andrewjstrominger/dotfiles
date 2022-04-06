@@ -1,5 +1,0 @@
-Plug 'https://github.com/scrooloose/nerdcommenter'
-Plug 'https://github.com/tpope/vim-surround.git'
-Plug 'tpope/vim-eunuch'
-Plug 'airblade/vim-gitgutter'
-Plug 'lifepillar/vim-mucomplete'
