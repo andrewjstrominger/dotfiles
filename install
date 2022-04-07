@@ -18,9 +18,9 @@ then
 	git config --global alias.p push
 	git config --global alias.st status
 	git config --global alias.amend-no-edit "commit --amend --no-edit"
+
 	alias pull="git pull"
   alias rebase-main="git fetch origin main && git rebase origin/main"
-
   alias format-changed="./node_modules/.bin/prettier -w  $(git diff --name-only)"
 
 	# Git autocomplete
