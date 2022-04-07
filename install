@@ -14,7 +14,7 @@ then
 	cp -r nvim/* $HOME/.config/nvim/.
 	#nvim +'PlugInstall --sync' +qa
 	echo "plug install"
-	nvim -u ~/.config/nvim/init.vim +'PluginInstall --sync' +qall
+	#nvim -u ~/.config/nvim/init.vim +'PluginInstall --sync' +qall
 	echo "plug install done"
 
 
