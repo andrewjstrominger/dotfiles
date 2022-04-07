@@ -1,23 +1,17 @@
 #!/bin/bash
 
-# Install neovim
 if [ $CODESPACES ]
 then
-	#apt-get install -y libfuse2
-	#curl -L -o $HOME/bin/nvim https://github.com/neovim/neovim/releases/download/v0.6.1/nvim.appimage
-	#chmod a+x $HOME/bin/nvim
-
+  # Install neovim
 	sudo apt-get install -y neovim
 
-	#curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-	mkdir $HOME/.config/nvim
-	cp -r nvim/* $HOME/.config/nvim/.
-	echo "plug install"
-	vim +PlugInstall +qall
-	nvim +'PlugInstall --sync' +qa
-	echo "plug install done"
+  # Copy vim config
+	mkdir $HOME/.config
+	cp -r nvim $HOME/.config
+	nvim +PlugInstall +qall
+  #nvim +'PlugInstall --sync' +qall
 
-
+  # Git aliases
 	git config --global alias.co checkout
 	git config --global alias.br branch
 	git config --global alias.p push
@@ -25,8 +19,7 @@ then
 	git config --global alias.amend-no-edit "commit --amend --no-edit"
 	alias pull="git pull"
 
-	# git autocomplete
+	# Git autocomplete
 	curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash -o ~/.git-completion.bash
-	# . ~/.git-completion.bash
 	source ~/.git-completion.bash
 fi
