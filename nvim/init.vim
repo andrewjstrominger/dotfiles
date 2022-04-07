@@ -240,8 +240,8 @@ fun! OpenSpecInSplit()
   let file = expand('%:p')
 
   if match(file, "app/") >= 0
-    let f1 = substitute(file, "\\.rb", "_spec.rb", "")
-    let f2 = substitute(f1, "app\\/", "spec/", "")
+    let f1 = substitute(file, "\\.rb", "_test.rb", "")
+    let f2 = substitute(f1, "app\\/", "test/", "")
     call OpenFilesInSplit(f2, file)
     exec "w"
   elseif match(file, "spec/") >= 0
