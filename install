@@ -13,6 +13,7 @@ then
 	mkdir $HOME/.config/nvim
 	cp -r nvim/* $HOME/.config/nvim/.
 	echo "plug install"
+	vim +PlugInstall +qall
 	nvim +'PlugInstall --sync' +qa
 	echo "plug install done"
 

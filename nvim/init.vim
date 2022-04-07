@@ -61,7 +61,7 @@ function! ClearTerminalTransform(cmd) abort
   return 'clear;'.a:cmd
 endfunction
 
-colorscheme Tomorrow-Night
+silent! colorscheme Tomorrow-Night
 
 imap <C-L> <SPACE>=><SPACE>
 
