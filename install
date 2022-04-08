@@ -10,7 +10,9 @@ then
 	cp -r nvim/* $HOME/.config/nvim/.
   echo "the user"
   id -u -n
-	vim +PlugInstall +qall
+  vim -E -s -u ~/.config/nvim/init.vim +PlugInstall +qall
+  echo "PlugInstall done"
+	#vim +PlugInstall +qall
   #nvim +'PlugInstall --sync' +qall
 
   # Git aliases
