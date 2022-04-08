@@ -9,7 +9,7 @@ then
   mkdir -p $HOME/.config/nvim
 	cp -r nvim/* $HOME/.config/nvim/.
   echo "the user"
-  echo $USER
+  id -u -n
 	vim +PlugInstall +qall
   #nvim +'PlugInstall --sync' +qall
 
