@@ -6,7 +6,7 @@ then
 	sudo apt-get install -y neovim
 
   # Copy vim config
-  mkdir $HOME/.config/nvim
+  mkdir -p $HOME/.config/nvim
 	cp -r nvim/* $HOME/.config/nvim/.
 
 	#nvim +PlugInstall +qall
