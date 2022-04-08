@@ -8,10 +8,7 @@ then
   # Copy vim config
   mkdir -p $HOME/.config/nvim
 	cp -r nvim/* $HOME/.config/nvim/.
-  echo "the user"
-  id -u -n
-  vim -E -s -u ~/.config/nvim/init.vim +PlugInstall +qall
-  echo "PlugInstall done"
+  #vim -E -s -u ~/.config/nvim/init.vim +PlugInstall +qall
 	#vim +PlugInstall +qall
   #nvim +'PlugInstall --sync' +qall
 
@@ -22,6 +19,10 @@ then
 	git config --global alias.st status
 	git config --global alias.amend-no-edit "commit --amend --no-edit"
 
+	alias rc="bundle exec rails console"
+	alias rs="bundle exec rails server"
+	alias be="bundle exec"
+	alias bi="bundle install"
 	alias pull="git pull"
   alias rebase-main="git fetch origin main && git rebase origin/main"
   alias format-changed="./node_modules/.bin/prettier -w  $(git diff --name-only)"
