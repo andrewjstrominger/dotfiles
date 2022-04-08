@@ -8,8 +8,9 @@ then
   # Copy vim config
   mkdir -p $HOME/.config/nvim
 	cp -r nvim/* $HOME/.config/nvim/.
-
-	#nvim +PlugInstall +qall
+  echo "the user"
+  echo $USER
+	vim +PlugInstall +qall
   #nvim +'PlugInstall --sync' +qall
 
   # Git aliases
