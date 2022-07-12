@@ -7,10 +7,10 @@ then
 
   # Copy vim config
   mkdir -p $HOME/.config/nvim
-	cp -r nvim/* $HOME/.config/nvim/.
+  cp -r nvim/* $HOME/.config/nvim/.
 
-	# Git autocomplete
-	curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash -o ~/.git-completion.bash
+  # Git autocomplete
+  curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash -o ~/.git-completion.bash
 
   cp .bash_aliases ~/.
   echo "" >> ~/.bashrc
