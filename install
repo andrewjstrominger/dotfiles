@@ -8,27 +8,17 @@ then
   # Copy vim config
   mkdir -p $HOME/.config/nvim
 	cp -r nvim/* $HOME/.config/nvim/.
+  # The vim +PlugInstall just hangs for some reason
   #vim -E -s -u ~/.config/nvim/init.vim +PlugInstall +qall
 	#vim +PlugInstall +qall
   #nvim +'PlugInstall --sync' +qall
 
-  # Git aliases
-	git config --global alias.co checkout
-	git config --global alias.br branch
-	git config --global alias.p push
-	git config --global alias.st status
-	git config --global alias.amend-no-edit "commit --amend --no-edit"
-	git config --global core.editor "vim"
-
-	alias rc="bundle exec rails console"
-	alias rs="bundle exec rails server"
-	alias be="bundle exec"
-	alias bi="bundle install"
-	alias pull="git pull"
-  alias rebase-main="git fetch origin main && git rebase origin/main"
-  alias format-changed="./node_modules/.bin/prettier -w  $(git diff --name-only)"
-
 	# Git autocomplete
 	curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash -o ~/.git-completion.bash
-	source ~/.git-completion.bash
+
+  cp .bash_aliases ~/.
+  echo "" >> ~/.bashrc
+  echo "if [ -e $HOME/.bash_aliases ]; then" >> ~/.bashrc
+  echo "    source $HOME/.bash_aliases" >> ~/.bashrc
+  echo "fi" >> ~/.bashrc
 fi
