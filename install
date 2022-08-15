@@ -3,7 +3,8 @@
 if [ $CODESPACES ]
 then
   # Install neovim
-	sudo apt-get install -y neovim
+  sudo apt-get update
+  sudo apt-get install -y neovim
 
   # Copy vim config
   mkdir -p $HOME/.config/nvim
