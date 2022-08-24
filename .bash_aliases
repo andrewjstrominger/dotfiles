@@ -14,8 +14,7 @@ alias pull="git pull"
 alias rebase-main="git fetch origin main && git rebase origin/main"
 
 # Still need to play around with this
-alias format-changed="./node_modules/.bin/prettier -w  $(git diff --name-only)"
-
+alias format-changed="git ls-files -m | xargs ls -1 2>/dev/null | grep '\.rb$' | xargs ./node_modules/.bin/prettier -w && git ls-files -m | xargs ls -1 2>/dev/null | grep '\.rb$' | xargs rubocop -A"
 source ~/.git-completion.bash
 
 if [ ! -d "$HOME/.config/nvim/plugged/" ]; then
