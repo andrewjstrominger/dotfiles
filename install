@@ -18,4 +18,14 @@ then
   echo "if [ -e $HOME/.bash_aliases ]; then" >> ~/.bashrc
   echo "    source $HOME/.bash_aliases" >> ~/.bashrc
   echo "fi" >> ~/.bashrc
+else
+  # brew install neovim
+	
+  # Copy vim config
+  mkdir -p $HOME/.config/nvim
+  cp -r nvim/* $HOME/.config/nvim/.
+
+  if [ ! -d "$HOME/.config/nvim/plugged/" ]; then
+    nvim +'PlugInstall --sync' +qall
+  fi
 fi
