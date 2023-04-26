@@ -12,6 +12,7 @@ alias be="bundle exec"
 alias bi="bundle install"
 alias pull="git pull"
 alias rebase-main="git fetch origin main && git rebase origin/main"
+alias rebase-master="git fetch origin master && git rebase origin/master"
 
 # Still need to play around with this
 alias format-changed="git ls-files -m | xargs ls -1 2>/dev/null | grep '\.rb$' | xargs ./node_modules/.bin/prettier -w && git ls-files -m | xargs ls -1 2>/dev/null | grep '\.rb$' | xargs rubocop -A"
