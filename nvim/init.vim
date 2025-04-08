@@ -30,6 +30,7 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'tpope/vim-eunuch'
   Plug 'airblade/vim-gitgutter'
   Plug 'lifepillar/vim-mucomplete'
+  Plug 'github/copilot.vim', { 'branch': 'stable' }
 call plug#end()
 
 set dir=/tmp//
@@ -43,6 +44,9 @@ set smartcase
 set textwidth=0 nosmartindent tabstop=2 shiftwidth=2 softtabstop=2 expandtab
 set undofile
 set clipboard=unnamed
+
+" Default to static completion for SQL
+let g:omni_sql_default_compl_type = 'syntax'
 
 autocmd BufNewFile,BufRead *.md,*.markdown setlocal filetype=ghmarkdown
 autocmd BufNewFile,BufRead *.txt setlocal spell spelllang=en_us
@@ -61,9 +65,11 @@ function! ClearTerminalTransform(cmd) abort
   return 'clear;'.a:cmd
 endfunction
 
-" silent! colorscheme Tomorrow-Night
+silent! colorscheme Tomorrow-Night
 
 imap <C-L> <SPACE>=><SPACE>
+
+let test#ruby#rspec#executable = 'bundle exec rspec'
 
 nmap <silent> <LocalLeader>ff :CtrlP<CR>
 nmap <silent> <LocalLeader>gw :Ggrep <cword><CR>
@@ -249,14 +255,14 @@ fun! OpenSpecInSplit()
     let f2 = substitute(f1, "spec/", "app/", "")
     call OpenFilesInSplit(file, f2)
     exec "w"
-  elseif match(file, "test/") >= 0
-    let f1 = substitute(file, "\_test", "", "")
-    let f2 = substitute(f1, "test/", "app/", "")
-    call OpenFilesInSplit(file, f2)
-    exec "w"
   elseif match(file, "lib/") >= 0
     let f1 = substitute(file, "\\.rb", "_spec.rb", "")
     let f2 = substitute(f1, "lib/", "spec/lib/", "")
+    call OpenFilesInSplit(file, f2)
+    exec "w"
+  elseif match(file, "test/") >= 0
+    let f1 = substitute(file, "\_test", "", "")
+    let f2 = substitute(f1, "test/", "app/", "")
     call OpenFilesInSplit(file, f2)
     exec "w"
   elseif match(file, "src") >= 0
