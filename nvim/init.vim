@@ -43,7 +43,24 @@ set showmatch
 set smartcase
 set textwidth=0 nosmartindent tabstop=2 shiftwidth=2 softtabstop=2 expandtab
 set undofile
+
+" Allow copy/paste between codespaces and local clipboard
+" Also need to enable Applications in in terminal may access clipboard
 set clipboard=unnamed
+lua << EOF
+vim.g.clipboard = {
+  name = "OSC 52",
+  copy = {
+    ["+"] = require("vim.ui.clipboard.osc52").copy("+"),
+    ["*"] = require("vim.ui.clipboard.osc52").copy("*"),
+  },
+  paste = {
+    ["+"] = function() return { vim.fn.split(vim.fn.getreg(""), "\n"), vim.fn.getregtype("") } end,
+    ["*"] = function() return { vim.fn.split(vim.fn.getreg(""), "\n"), vim.fn.getregtype("") } end,
+  },
+}
+EOF
+
 
 " Default to static completion for SQL
 let g:omni_sql_default_compl_type = 'syntax'
