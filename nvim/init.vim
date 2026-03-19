@@ -263,18 +263,18 @@ fun! OpenSpecInSplit()
   let file = expand('%:p')
 
   if match(file, "app/") >= 0
-    let f1 = substitute(file, "\\.rb", "_spec.rb", "")
-    let f2 = substitute(f1, "app\\/", "spec/", "")
+    let f1 = substitute(file, "\\.rb", "_test.rb", "")
+    let f2 = substitute(f1, "app\\/", "test/", "")
     call OpenFilesInSplit(f2, file)
     exec "w"
-  elseif match(file, "spec/") >= 0
-    let f1 = substitute(file, "\_spec", "", "")
-    let f2 = substitute(f1, "spec/", "app/", "")
+  elseif match(file, "test/") >= 0
+    let f1 = substitute(file, "\_test", "", "")
+    let f2 = substitute(f1, "test/", "app/", "")
     call OpenFilesInSplit(file, f2)
     exec "w"
   elseif match(file, "lib/") >= 0
-    let f1 = substitute(file, "\\.rb", "_spec.rb", "")
-    let f2 = substitute(f1, "lib/", "spec/lib/", "")
+    let f1 = substitute(file, "\\.rb", "_test.rb", "")
+    let f2 = substitute(f1, "lib/", "test/lib/", "")
     call OpenFilesInSplit(file, f2)
     exec "w"
   elseif match(file, "test/") >= 0
