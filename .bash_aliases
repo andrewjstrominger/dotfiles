@@ -4,7 +4,7 @@ git config --global alias.br branch
 git config --global alias.p push
 git config --global alias.st status
 git config --global alias.amend-no-edit "commit --amend --no-edit"
-git config --global core.editor "vim"
+git config --global core.editor "nvim"
 
 alias rc="bundle exec rails console"
 alias rs="bundle exec rails server"
