@@ -15,7 +15,7 @@ alias rebase-main="git fetch origin main && git rebase origin/main"
 alias rebase-master="git fetch origin master && git rebase origin/master"
 
 # Still need to play around with this
-alias format-changed="git ls-files -m | xargs ls -1 2>/dev/null | grep '\.rb$' | xargs ./node_modules/.bin/prettier -w && git ls-files -m | xargs ls -1 2>/dev/null | grep '\.rb$' | xargs rubocop -A"
+alias lint-changed='changed=$(git diff --name-only --diff-filter=d HEAD); [ -n "$changed" ] && echo "$changed" | xargs bundle exec rubocop -A && echo "$changed" | xargs npx prettier --write'
 source ~/.git-completion.bash
 
 if [ ! -d "$HOME/.config/nvim/plugged/" ]; then
