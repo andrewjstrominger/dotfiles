@@ -13,6 +13,8 @@ alias bi="bundle install"
 alias pull="git pull"
 alias rebase-main="git fetch origin main && git rebase origin/main"
 alias rebase-master="git fetch origin master && git rebase origin/master"
+alias gpf='git push origin $(git branch --show-current) --force-with-lease'
+alias gpf='git push origin $(git branch --show-current)'
 
 # Still need to play around with this
 alias lint-changed='changed=$(git diff --name-only --diff-filter=d HEAD); [ -n "$changed" ] && echo "$changed" | xargs bundle exec rubocop -A && echo "$changed" | xargs npx prettier --write'
