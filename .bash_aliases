@@ -17,7 +17,9 @@ alias gpf='git push origin $(git branch --show-current) --force-with-lease'
 alias gpf='git push origin $(git branch --show-current)'
 
 # Still need to play around with this
-alias lint-changed='changed=$(git diff --name-only --diff-filter=d HEAD); [ -n "$changed" ] && echo "$changed" | xargs bundle exec rubocop -A && echo "$changed" | xargs npx prettier --write'
+alias cop-lint-changed='changed=$(git diff --name-only --diff-filter=d HEAD | grep "\.rb$"); [ -n "$changed" ] && echo "$changed" | xargs bundle exec rubocop -A && echo "$changed" | xargs npx prettier --write'
+alias cop-changed='changed=$(git diff --name-only --diff-filter=d HEAD | grep "\.rb$"); [ -n "$changed" ] && echo "$changed" | xargs bundle exec rubocop -A'
+alias lint-changed='changed=$(git diff --name-only --diff-filter=d HEAD | grep "\.rb$"); [ -n "$changed" ] && echo "$changed" | xargs npx prettier --write'
 source ~/.git-completion.bash
 
 if [ ! -d "$HOME/.config/nvim/plugged/" ]; then
